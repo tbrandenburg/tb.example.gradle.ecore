@@ -1,0 +1,68 @@
+plugins {
+  id "java"
+  id "eclipse"
+  id "org.xtext.builder" version "2.0.4"
+}
+
+repositories {
+  jcenter()
+}
+
+apply plugin: "org.xtext.xtend"
+
+ext {
+  mwe2Version = "2.9.1.201705291010"
+  xtextVersion = "2.17.0"
+}
+
+sourceSets {
+  main {
+    java.srcDirs = [
+      "src/main/ecore-gen"
+    ]
+    resources.srcDirs = [
+      "src/main/ecore-gen"
+    ]
+  }
+}
+
+jar {
+  from("model") {
+    into("model")
+  }
+  manifest {
+    attributes "Bundle-SymbolicName": project.name
+  }
+}
+
+dependencies {
+  compile "org.eclipse.xtext:org.eclipse.xtext:${xtextVersion}"
+  compile "org.eclipse.xtext:org.eclipse.xtext.xbase:${xtextVersion}"
+}
+
+configurations {
+  all {
+    exclude group: "asm"
+  }
+  mwe2 {
+    extendsFrom compile
+  }
+}
+
+dependencies {
+  mwe2 "org.eclipse.emf:org.eclipse.emf.mwe2.launch:${mwe2Version}"
+  mwe2 "org.eclipse.xtext:org.eclipse.xtext.xtext.generator:${xtextVersion}"
+  mwe2 "org.eclipse.xtext:org.eclipse.xtext.common.types:${xtextVersion}"
+  mwe2 "org.eclipse.xtext:xtext-antlr-generator:[2.1.1, 3)"
+}
+
+task generateXtextLanguage(type: JavaExec) {
+  main = "org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher"
+  classpath = configurations.mwe2
+  inputs.file "model/GenerateModel.mwe2"
+  args += "model/GenerateModel.mwe2"
+}
+
+generateXtext.dependsOn(generateXtextLanguage)
+clean.dependsOn(cleanGenerateXtextLanguage)
+eclipse.classpath.plusConfigurations += [configurations.mwe2]

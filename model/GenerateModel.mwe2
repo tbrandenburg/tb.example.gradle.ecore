@@ -1,0 +1,22 @@
+module GenerateModel
+
+var rootPath = ".."
+
+Workflow {
+    bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
+        projectMapping = {
+            path = "${rootPath}/ecore-gradle-example"
+            projectName = "ecore-gradle-example"
+        }
+    }
+
+    component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
+        directory ="src/main/ecore-gen"
+    }
+
+    component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+        generateCustomClasses = true
+        genModel = "platform:/resource/ecore-gradle-example/model/model.genmodel"
+        srcPath = "platform:/resource/ecore-gradle-example/src/main/ecore-gen"
+    }
+}
