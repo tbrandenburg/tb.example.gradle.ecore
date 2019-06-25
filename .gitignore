@@ -3,3 +3,5 @@ build.properties
 plugin.properties
 plugin.xml
 build.xml
+build/
+.gradle/
