@@ -1,2 +1,4 @@
-build:
+build: FORCE
 	gradle build
+
+FORCE:
