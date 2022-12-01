@@ -11,8 +11,8 @@ repositories {
 apply plugin: "org.xtext.xtend"
 
 ext {
-  mwe2Version = "2.9.1.201705291010"
-  xtextVersion = "2.17.0"
+  mwe2Version = "2.11.1"
+  xtextVersion = "2.20.0"
 }
 
 sourceSets {
@@ -36,8 +36,8 @@ jar {
 }
 
 dependencies {
-  compile "org.eclipse.xtext:org.eclipse.xtext:${xtextVersion}"
-  compile "org.eclipse.xtext:org.eclipse.xtext.xbase:${xtextVersion}"
+  implementation "org.eclipse.xtext:org.eclipse.xtext:${xtextVersion}"
+  implementation "org.eclipse.xtext:org.eclipse.xtext.xbase:${xtextVersion}"
 }
 
 configurations {
@@ -45,7 +45,7 @@ configurations {
     exclude group: "asm"
   }
   mwe2 {
-    extendsFrom compile
+    extendsFrom implementation
   }
 }
 

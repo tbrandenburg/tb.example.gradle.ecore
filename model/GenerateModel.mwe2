@@ -5,18 +5,18 @@ var rootPath = ".."
 Workflow {
     bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
         projectMapping = {
-            path = "${rootPath}/ecore-gradle-example"
-            projectName = "ecore-gradle-example"
+            path = "${rootPath}/tb.example.gradle.ecore"
+            projectName = "tb.example.gradle.ecore"
         }
     }
 
     component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
-        directory ="src/main/ecore-gen"
+        directory ="src-gen/main/ecore-gen"
     }
 
     component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
         generateCustomClasses = true
-        genModel = "platform:/resource/ecore-gradle-example/model/model.genmodel"
-        srcPath = "platform:/resource/ecore-gradle-example/src/main/ecore-gen"
+        genModel = "platform:/resource/tb.example.gradle.ecore/model/model.genmodel"
+        srcPath = "platform:/resource/tb.example.gradle.ecore/src-gen/main/ecore-gen"
     }
 }
