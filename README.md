@@ -11,5 +11,5 @@ make
 or
 
 ~~~bash
-gradle generateXtextLanguage
+gradle build
 ~~~

@@ -1,2 +1,2 @@
 build:
-	gradle generateXtextLanguage
+	gradle build
