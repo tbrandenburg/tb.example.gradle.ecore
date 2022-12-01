@@ -18,10 +18,10 @@ ext {
 sourceSets {
   main {
     java.srcDirs = [
-      "src/main/ecore-gen"
+      "src-gen/main/ecore-gen"
     ]
     resources.srcDirs = [
-      "src/main/ecore-gen"
+      "src-gen/main/ecore-gen"
     ]
   }
 }
